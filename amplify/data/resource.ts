@@ -12,6 +12,18 @@ const schema = a.schema({
       content: a.string(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
+
+  // Hinzufügen der Order-Tabelle
+  Order: a
+    .model({
+      firstName: a.string(),
+      lastName: a.string(),
+      wantsTShirt: a.boolean(),
+      size: a.string(),
+      initials: a.string(),
+      paymentMethod: a.string(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
@@ -52,6 +64,6 @@ Fetch records from the database and use them in your frontend component.
 
 /* For example, in a React component, you can use this snippet in your
   function's RETURN statement */
-// const { data: todos } = await client.models.Todo.list()
+// const { data: orders } = await client.models.Order.list()
 
-// return <ul>{todos.map(todo => <li key={todo.id}>{todo.content}</li>)}</ul>
+// return <ul>{orders.map(order => <li key={order.id}>{order.firstName} {order.lastName}</li>)}</ul>

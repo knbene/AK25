@@ -8,6 +8,7 @@ function App() {
   const [orders, setOrders] = useState<Array<Schema["Order"]["type"]>>([]);
 
   useEffect(() => {
+    console.log("Client models:", client.models); // Debugging-Log
     // Beobachte Änderungen an der Order-Tabelle und aktualisiere die lokale Liste
     client.models.Order.observeQuery().subscribe({
       next: (data) => setOrders([...data.items]),
@@ -38,7 +39,6 @@ function App() {
       paymentMethod,
     });
   }
-
   return (
     <main>
       <h1>Bestellungen</h1>
@@ -51,13 +51,6 @@ function App() {
           </li>
         ))}
       </ul>
-      <div>
-        🥳 App erfolgreich verbunden. Neue Bestellungen werden in AWS Data Manager sichtbar.
-        <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Weitere Schritte im Tutorial ansehen.
-        </a>
-      </div>
     </main>
   );
 }

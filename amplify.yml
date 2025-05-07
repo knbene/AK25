@@ -24,6 +24,9 @@ frontend:
         - key: Cache-Control
           value: max-age=0,no-cache,no-store,must-revalidate
   redirects:
-    - source: /bestellstatus/
-      target: /bestellstatus/index.html
+    - source: /bestellstatus/<*>
+      target: /index.html
+      status: 200
+    - source: /<*>
+      target: /index.html
       status: 200
